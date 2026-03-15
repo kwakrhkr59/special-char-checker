@@ -1,1 +1,0 @@
-# special-char-checker
