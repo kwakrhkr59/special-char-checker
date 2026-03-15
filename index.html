@@ -502,6 +502,9 @@
   <div class="card">
     <div class="card-title">검사할 문단</div>
     <textarea id="inputText" placeholder="여기에 검사할 문단을 입력하세요..."></textarea>
+    <div style="text-align:right; margin-top:6px;">
+      <span id="charCount" style="font-size:12px; color:var(--text-muted); font-family:'DM Mono',monospace;">0자</span>
+    </div>
     <div class="controls">
       <button class="btn-primary" id="checkBtn">
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -661,12 +664,26 @@
     resultCard.classList.remove('visible');
     void resultCard.offsetWidth; // reflow for re-animation
     resultCard.classList.add('visible');
+
+    // Scroll to result
+    setTimeout(() => {
+      resultCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 50);
   }
+
+  // Char count
+  function updateCharCount() {
+    const len = document.getElementById('inputText').value.length;
+    document.getElementById('charCount').textContent = len.toLocaleString() + '자';
+  }
+
+  document.getElementById('inputText').addEventListener('input', updateCharCount);
 
   document.getElementById('checkBtn').addEventListener('click', check);
   document.getElementById('clearBtn').addEventListener('click', () => {
     document.getElementById('inputText').value = '';
     document.getElementById('resultCard').classList.remove('visible');
+    updateCharCount();
   });
   document.getElementById('inputText').addEventListener('keydown', e => {
     if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') check();
