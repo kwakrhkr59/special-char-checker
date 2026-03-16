@@ -1,2 +1,2 @@
 export const ALLOWED_BASE_RE = /[\uAC00-\uD7A3\u1100-\u11FF\u3130-\u318Fa-zA-Z0-9\s]/;
-export const DEFAULT_ALLOWED = ["·", "'", '"', "-", "/"];
+export const DEFAULT_ALLOWED = [".", ",", "'", '"', "-", "/", "(", ")", "!", "?", "&", "%", "$", "@", "#", "*", "+", "=", "_", ":", ";", "<", ">", "[", "]", "{", "}", "|", "\\"];
