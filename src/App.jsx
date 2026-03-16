@@ -5,6 +5,7 @@ import { AllowedCharsCard } from "./components/AllowedCharsCard";
 import { InputCard } from "./components/InputCard";
 import { ResultCard } from "./components/ResultCard";
 import { Toast } from "./components/common/Toast";
+import Footer from "./components/common/Footer";
 
 export default function App() {
   const {
@@ -41,6 +42,8 @@ export default function App() {
           onAddToAllow={addBadToAllow}
           onReplace={replaceChar}
         />
+
+        <Footer />
       </div>
       <Toast message={toast} />
     </>
