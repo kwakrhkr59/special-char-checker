@@ -19,9 +19,21 @@ export function HighlightMark({ ch, code, active, onClick }) {
       {ch}
       {hovered && (
         <span style={{
-          position: "absolute", bottom: "calc(100% + 4px)", left: "50%",
-          transform: "translateX(-50%)", background: "var(--text-primary)",
-          color: "#fff", fontSize: 10, padding: "3px 7px", borderRadius: 5, zIndex: 10,
+          position: "absolute", 
+          bottom: "calc(100% + 6px)",
+          left: "50%",
+          transform: "translateX(-50%)",
+          background: "var(--text-primary)", 
+          color: "#fff",
+          fontFamily: "'DM Mono', monospace", 
+          fontSize: 10,
+          padding: "4px 8px",
+          borderRadius: 5, 
+          zIndex: 10,
+          whiteSpace: "nowrap",      // 줄바꿈 방지
+          display: "inline-block",
+          textAlign: "center",
+          boxShadow: "0 2px 4px rgba(0,0,0,0.2)",
         }}>U+{code}</span>
       )}
     </mark>
