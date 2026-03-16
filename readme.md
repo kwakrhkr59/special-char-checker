@@ -8,7 +8,9 @@
 **Live Demo**
 [https://special-char-checker.vercel.app](https://special-char-checker.vercel.app)
 
-<img width="900" alt="preview" src="./preview.png" />
+<p align="center">
+  <img width="900" alt="preview" src="./docs/preview.gif" />
+</p>
 
 ---
 
@@ -84,18 +86,3 @@ npm start
 npm run build
 
 ```
-
-
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
----
-
-**다음에 무엇을 도와드릴까요?**
-
-* Vercel 배포 시 `npm run build`에서 발생할 수 있는 오류를 미리 체크해 드릴까요?
-* 이미지 링크를 깃허브에 올리는 구체적인 방법을 알려드릴까요?
