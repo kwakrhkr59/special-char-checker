@@ -6,16 +6,16 @@ function ChipActionBtn({ children, onClick, hoverGreen, active, title }) {
   const [hovered, setHovered] = useState(false);
   const on = hovered || active;
   const base = {
-    display: "inline-flex", alignItems: "center", gap: 4,
+    display: "inline-flex", alignItems: "center", gap: "var(--gap-xs)",
     background: on ? (hoverGreen ? "var(--green-light)" : "rgba(192,21,46,.08)") : "none",
-    border: "none", borderLeft: "1px solid var(--red-mid)",
+    border: "none", borderLeft: "var(--border-width) solid var(--red-mid)",
     cursor: "pointer",
     color: on && hoverGreen ? "var(--green)" : "var(--red)",
     opacity: on ? 1 : 0.55,
-    padding: "0 9px", fontSize: 12,
+    padding: "0 9px", fontSize: "var(--font-size-base)",
     fontFamily: "'Pretendard', sans-serif", fontWeight: 600,
     whiteSpace: "nowrap", height: "100%",
-    transition: "opacity .15s, background .15s, color .15s",
+    transition: `opacity var(--transition), background var(--transition), color var(--transition)`,
   };
   return (
     <button style={base} title={title} onClick={onClick}
@@ -40,15 +40,15 @@ export function FoundChip({ ch, cnt, isSelected, onSelect, onAddToAllow, onRepla
   // 팝오버 위치 계산
   let popoverStyle = {
     position: "fixed",
-    display: "flex", alignItems: "center", gap: 6,
-    padding: "8px 10px",
+    display: "flex", alignItems: "center", gap: "var(--gap-sm)",
+    padding: "var(--gap-md) var(--gap-md)",
     background: "var(--surface)",
-    border: `1.5px solid var(--red-mid)`,
+    border: `var(--border-width) solid var(--red-mid)`,
     borderRadius: "var(--r-md)",
     boxShadow: "var(--shadow)",
     zIndex: 1000,
     whiteSpace: "nowrap",
-    animation: "pop-in .15s cubic-bezier(0.34,1.56,0.64,1)",
+    animation: `pop-in var(--transition) var(--transition-easing)`,
     top: 0, left: 0,
   };
 
@@ -64,28 +64,28 @@ export function FoundChip({ ch, cnt, isSelected, onSelect, onAddToAllow, onRepla
       {/* 칩 본체 — pill 형태 항상 유지 */}
       <div style={{
         display: "inline-flex", alignItems: "stretch",
-        border: `1.5px solid ${isSelected ? "var(--red)" : "var(--red-mid)"}`,
+        border: `var(--border-width) solid ${isSelected ? "var(--red)" : "var(--red-mid)"}`,
         borderRadius: "var(--r-full)",
         background: "var(--red-light)",
         boxShadow: isSelected ? "0 0 0 2px rgba(192,21,46,.15)" : "none",
         overflow: "hidden",
-        transition: "box-shadow .15s",
+        transition: `box-shadow var(--transition)`,
       }}>
         {/* 메인 칩 영역 */}
         <div onClick={() => onSelect(ch)} style={{
-          display: "flex", alignItems: "center", gap: 6,
-          padding: "5px 10px 5px 12px", cursor: "pointer",
+          display: "flex", alignItems: "center", gap: "var(--gap-sm)",
+          padding: "var(--padding-sm) var(--gap-md) var(--padding-sm) 12px", cursor: "pointer",
         }}>
           <span style={{ color: "var(--red)", fontWeight: 500, fontFamily: "'DM Mono', monospace" }}>{ch}</span>
-          <span style={{ fontSize: 10, color: "var(--red-dim)", fontFamily: "'DM Mono', monospace" }}>U+{toUnicode(ch)}</span>
+          <span style={{ fontSize: "var(--font-size-xs)", color: "var(--red-dim)", fontFamily: "'DM Mono', monospace" }}>U+{toUnicode(ch)}</span>
           <span style={{
             background: "rgba(192,21,46,.1)", borderRadius: "var(--r-full)",
-            padding: "1px 7px", fontSize: 11, fontWeight: 700, color: "var(--red)",
+            padding: "var(--padding-xs) 7px", fontSize: "var(--font-size-sm)", fontWeight: 700, color: "var(--red)",
           }}>{cnt}회</span>
         </div>
 
         {/* 액션 버튼 */}
-        <div style={{ display: "flex", borderLeft: `1.5px solid var(--red-mid)` }}>
+        <div style={{ display: "flex", borderLeft: `var(--border-width) solid var(--red-mid)` }}>
           <ChipActionBtn title="허용 목록에 추가" onClick={(e) => { e.stopPropagation(); onAddToAllow(ch); }} hoverGreen>
             <IconPlus /> 허용
           </ChipActionBtn>
@@ -105,6 +105,9 @@ export function FoundChip({ ch, cnt, isSelected, onSelect, onAddToAllow, onRepla
           onClick={(e) => e.stopPropagation()}
           style={popoverStyle}
         >
+          <span style={{ fontSize: "var(--font-size-sm)", color: "var(--text-muted)", fontFamily: "'DM Mono', monospace" }}>
+            {ch} →
+          </span>
           <input
             autoFocus
             value={replaceVal}
@@ -116,13 +119,13 @@ export function FoundChip({ ch, cnt, isSelected, onSelect, onAddToAllow, onRepla
             placeholder="문자 입력"
             style={{
               width: 120, height: 28,
-              border: `1.5px solid var(--border)`,
+              border: `var(--border-width) solid var(--border)`,
               borderRadius: "var(--r-sm)",
               textAlign: "center", outline: "none",
-              fontSize: 13, fontFamily: "'DM Mono', monospace",
+              fontSize: "var(--font-size-md)", fontFamily: "'DM Mono', monospace",
               background: "var(--red-light)",
               color: "var(--red)",
-              transition: "border-color .15s",
+              transition: `border-color var(--transition)`,
             }}
             onFocus={e => e.target.style.borderColor = "var(--red)"}
             onBlur={e => e.target.style.borderColor = "var(--border)"}
@@ -133,9 +136,9 @@ export function FoundChip({ ch, cnt, isSelected, onSelect, onAddToAllow, onRepla
               height: 28, padding: "0 10px",
               background: "var(--red)", color: "#fff",
               border: "none", borderRadius: "var(--r-sm)",
-              fontSize: 12, fontWeight: 600, cursor: "pointer",
+              fontSize: "var(--font-size-sm)", fontWeight: 600, cursor: "pointer",
               opacity: replaceVal ? 1 : 0.45,
-              transition: "opacity .15s",
+              transition: `opacity var(--transition)`,
             }}
           >
             변경
@@ -145,12 +148,12 @@ export function FoundChip({ ch, cnt, isSelected, onSelect, onAddToAllow, onRepla
             style={{
               height: 28, width: 28,
               background: "none",
-              border: `1px solid var(--border)`,
+              border: `var(--border-width-sm) solid var(--border)`,
               borderRadius: "var(--r-sm)",
               color: "var(--text-muted)",
-              fontSize: 14, cursor: "pointer",
+              fontSize: "var(--font-size-lg)", cursor: "pointer",
               display: "flex", alignItems: "center", justifyContent: "center",
-              transition: "border-color .15s, color .15s",
+              transition: `border-color var(--transition), color var(--transition)`,
             }}
             onMouseEnter={e => { e.currentTarget.style.borderColor = "var(--red)"; e.currentTarget.style.color = "var(--red)"; }}
             onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.color = "var(--text-muted)"; }}

@@ -45,10 +45,37 @@ export const GLOBAL_STYLES = `
     --text-muted: ${COLORS.textMuted};
     
     --shadow: 0 4px 16px rgba(79,99,210,.10), 0 2px 6px rgba(0,0,0,.05);
+    --shadow-sm: 0 2px 8px rgba(0,0,0,.08);
     --r-sm: 8px;
     --r-md: 12px;
     --r-lg: 16px;
     --r-full: 999px;
+    
+    /* Spacing */
+    --gap-xs: 4px;
+    --gap-sm: 6px;
+    --gap: 8px;
+    --gap-md: 12px;
+    --gap-lg: 16px;
+    --padding-xs: 1px;
+    --padding-sm: 5px;
+    --padding-md: 8px;
+    
+    /* Border */
+    --border-width: 1.5px;
+    --border-width-sm: 1px;
+    
+    /* Typography */
+    --font-size-xs: 10px;
+    --font-size-sm: 11px;
+    --font-size-base: 12px;
+    --font-size-md: 13px;
+    --font-size-lg: 14px;
+    --font-size-xl: 15px;
+    
+    /* Animation */
+    --transition: 0.15s;
+    --transition-easing: cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
