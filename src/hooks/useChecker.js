@@ -1,14 +1,28 @@
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { DEFAULT_ALLOWED, ALLOWED_BASE_RE } from "../constants/config";
 import { analyzeText } from "../utils/checkerUtils";
 
+const STORAGE_KEY = "allowedChars";
+
 export function useChecker() {
-  const [allowedChars, setAllowedChars] = useState(DEFAULT_ALLOWED);
+  const [allowedChars, setAllowedChars] = useState(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      return saved ? JSON.parse(saved) : DEFAULT_ALLOWED;
+    } catch {
+      return DEFAULT_ALLOWED;
+    }
+  });
   const [inputText, setInputText] = useState("");
   const [result, setResult] = useState(null);
   const [selectedChar, setSelectedChar] = useState(null);
   const [toast, setToast] = useState(null);
   const toastTimer = useRef(null);
+
+  // allowedChars가 변경될 때 localStorage에 저장
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(allowedChars));
+  }, [allowedChars]);
 
   const showToast = useCallback((msg) => {
     setToast(msg);
