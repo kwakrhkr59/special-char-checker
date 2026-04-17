@@ -10,7 +10,7 @@ import Footer from "./components/common/Footer";
 export default function App() {
   const {
     allowedChars, inputText, setInputText, result, selectedChar, toast,
-    runCheck, clearAll, addAllowedChar, removeAllowedChar, addBadToAllow,
+    runCheck, clearAll, addAllowedChar, removeAllowedChar, resetAllowedChars, addBadToAllow,
     replaceChar, toggleSelect
   } = useChecker();
 
@@ -30,7 +30,7 @@ export default function App() {
           <h1>비허용 특수문자 검사기</h1>
         </header>
 
-        <AllowedCharsCard allowedChars={allowedChars} onAdd={addAllowedChar} onRemove={removeAllowedChar} />
+        <AllowedCharsCard allowedChars={allowedChars} onAdd={addAllowedChar} onRemove={removeAllowedChar} onReset={resetAllowedChars} />
         
         <InputCard inputText={inputText} onChange={setInputText} onCheck={runCheck} onClear={clearAll} />
 

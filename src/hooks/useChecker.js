@@ -55,6 +55,11 @@ export function useChecker() {
     setAllowedChars((prev) => prev.filter((_, i) => i !== index));
   }, []);
 
+  const resetAllowedChars = useCallback(() => {
+    setAllowedChars(DEFAULT_ALLOWED);
+    showToast("허용 문자 목록이 초기화되었습니다.");
+  }, [showToast]);
+
   const replaceChar = useCallback((fromChar, toChar) => {
     if (!toChar) { showToast("바꿀 문자를 입력해주세요."); return; }
     const next = inputText.split(fromChar).join(toChar);
@@ -65,7 +70,7 @@ export function useChecker() {
 
   return {
     allowedChars, inputText, setInputText, result, selectedChar, toast,
-    runCheck, clearAll, addAllowedChar, removeAllowedChar, replaceChar,
+    runCheck, clearAll, addAllowedChar, removeAllowedChar, resetAllowedChars, replaceChar,
     toggleSelect: (ch) => setSelectedChar(prev => prev === ch ? null : ch),
     addBadToAllow: (ch) => {
       setAllowedChars(prev => [...prev, ch]);
